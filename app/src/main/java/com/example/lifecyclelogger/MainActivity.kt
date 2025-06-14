@@ -5,13 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -19,7 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
@@ -28,6 +21,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("check", "onCreate called")
         addEvent("onCreate")
 
         setContent {
@@ -37,41 +31,46 @@ class MainActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
+        Log.d("checkLog", "onStart called")
         addEvent("onStart")
     }
 
     override fun onResume() {
         super.onResume()
+        Log.d("checkLog", "onResume called")
         addEvent("onResume")
     }
 
     override fun onPause() {
         super.onPause()
+        Log.d("checkLog", "onPause called")
         addEvent("onPause")
     }
 
     override fun onStop() {
         super.onStop()
+        Log.d("checkLog", "onStop called")
         addEvent("onStop")
     }
 
     override fun onRestart() {
         super.onRestart()
+        Log.d("checkLog", "onRestart called")
         addEvent("onRestart")
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.d("checkLog", "onDestroy called")
         addEvent("onDestroy")
     }
 
     private fun addEvent(event: String) {
-        Log.d("LifecycleEvent", event)
+        Log.d("LifecycleLogger", "Event added: $event")
         Toast.makeText(this, event, Toast.LENGTH_SHORT).show()
         lifecycleEvents.add(event)
     }
 }
-
 @Composable
 fun LifecycleScreen(events: List<String>) {
     Column(modifier = Modifier
@@ -89,5 +88,3 @@ fun LifecycleScreen(events: List<String>) {
         }
     }
 }
-
-
